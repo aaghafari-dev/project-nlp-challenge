@@ -1,0 +1,8 @@
+project-nlp-challenge/
+├── dataset/
+│   ├── data.csv               # training data
+│   └── validation_data.csv'   # unlabelled (label=2)
+│   └── predictions.csv        # generated output file
+├── notebook.ipynb             # main analysis notebook
+├── README.md                  # project description 
+└── requirements.txt           # list of Python packages
