@@ -1,0 +1,87 @@
++----------------------------------------------------------+
+| 1. Imports & NLTK Downloads                               |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+| 2. Load Data (data.csv, validation_data.csv)              |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+| 3. Exploratory Data Analysis                              |
+|    - Missing values, data types                           |
+|    - Label distribution (balanced)                       |
+|    - Subject distribution                                 |
+|    - Text length by label                                 |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+| 4. Text Preprocessing (POS‑aware lemmatization)           |
+|    clean_text(): lowercase → tokenise → remove non‑alpha  |
+|    → remove stopwords → POS tagging → lemmatise           |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+| 5. Feature Engineering                                    |
+|    Create three columns: title_only, text_only, combined  |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+| 6. Train/Test Split (stratified, 70/30)                   |
+|    X_train_raw, X_test_raw, y_train, y_test               |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+| 7. Define Model Templates                                 |
+|    List of dicts: model_name, model_class, param_grid     |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+| 8. Expand Hyperparameter Combinations                     |
+|    Use ParameterGrid to flatten all param sets            |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+| 9. Evaluate Each (Feature, Config) with Cross‑Validation  |
+|    For each combination:                                   |
+|       - Build pipeline: TF‑IDF + classifier               |
+|       - Perform 5‑fold CV on training set                 |
+|       - Store mean CV F1 and std                          |
+|    (Parallelised with joblib)                             |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+|10. Select Best Configuration (highest mean CV F1)         |
+|    Extract: best_feature, best_classifier, best_params    |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+|11. Train Final Model on Training Split                    |
+|    Build pipeline with best params                        |
+|    Fit on X_train_raw[best_feature], y_train              |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+|12. Evaluate on Test Set (once)                            |
+|    Compute accuracy, F1, classification report, CM        |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+|13. (Optional) Feature Importance (if linear model)        |
+|    Extract top coefficients                               |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+|14. Retrain on Full Dataset (for final predictions)        |
+|    Fit on data[best_feature], data['label']               |
+|    Save pipeline as final_pipeline.pkl                    |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+|15. Predict on Validation Set                              |
+|    Load validation[best_feature], predict, save CSV       |
++----------------------------------------------------------+
+                           ↓
++----------------------------------------------------------+
+|16. Cross‑validate Final Pipeline on Full Data (optional)  |
+|    Estimate generalisation performance                    |
++----------------------------------------------------------+

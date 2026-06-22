@@ -3,6 +3,10 @@ project-nlp-challenge/
 │   ├── data.csv               # training data
 │   └── validation_data.csv'   # unlabelled (label=2)
 │   └── predictions.csv        # generated output file
-├── notebook.ipynb             # main analysis notebook
+├── notebook
+│	└── notebook.ipynb			 # main analysis notebook
+├── Streamlit 		
+│    └── App.py				 # Streamlit App 
+│    
 ├── README.md                  # project description 
 └── requirements.txt           # list of Python packages
