@@ -1,0 +1,17 @@
+project-nlp-challenge/
+├── dataset/
+│   ├── data.csv
+│   ├── validation_data.csv
+│   └── predictions.csv
+|    documentation
+|    ├── Documention.md
+|    ├── Flowchart.txt	
+|    └── Project Structure.txt
+├── notebook/
+│   └── notebook.ipynb 
+|    └── final_pipeline.pkl 
+|    └── test_results.pkl
+├── Streamlit/
+│   └── App.py                 
+├── README.md
+└── requirements.txt
